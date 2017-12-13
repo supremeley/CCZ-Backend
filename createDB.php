@@ -42,20 +42,25 @@
     mysqli_select_db( $conn, 'user' ); // 选择查询库
     $retval = mysqli_query( $conn, $sql );
     
-    $obj = new stdClass();
-    while($row = mysqli_fetch_array($retval))
-    {
-        // echo $row['user_id']." ".$row['user_name']." ".$row['user_password'];
-        $obj -> id = $row['user_id'];
-        $obj -> name = $row['user_name'];
-        $obj -> password = $row['user_password'];
-    }
+    // $obj = new stdClass();
 
-    $arr = array();
-    foreach($obj as $key => $val){
-        array_push($arr,$val);
-    }
+    // while($row = mysqli_fetch_array($retval))
+    // {
+    //     // echo $row['user_id']." ".$row['user_name']." ".$row['user_password'];
+    //     $obj -> id = $row['user_id'];
+    //     $obj -> name = $row['user_name'];
+    //     $obj -> password = $row['user_password'];
+    // }
 
-    print_r(json_encode($obj));
+    // $arr = array();
+
+    // foreach($obj as $key => $val){
+
+    //     array_push($arr,$val);
+
+    // }
+
+    // print_r(json_encode($obj));
+
     mysqli_close($conn);
 ?>

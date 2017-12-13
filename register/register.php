@@ -24,8 +24,6 @@
 
     $row = mysqli_num_rows($result);
 
-    // echo $row;
-
     if($row){
 
         echo '0';
@@ -35,8 +33,6 @@
         $sql_insert = "INSERT INTO user_tbl(user_name,user_password,submission_date)VALUES('$username','$password','$createdate')";
 
         $result = mysqli_query($con,$sql_insert);
-
-        // echo $sql;
 
         echo '1';
     }
