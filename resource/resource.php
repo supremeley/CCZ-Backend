@@ -1,31 +1,38 @@
 <?php
-
     error_reporting(0);
 
     $con = mysqli_connect('localhost:3306','root','','resource');
 
-    mysql_select_db($con,'resource');
+    // if (!$con){
+    //     die('Could not connect: ' . mysql_error());
+    // };
 
     mysqli_query($con,'set names utf8');
 
     header('Content-Type:text/html; charset=UTF-8');
 
-    $sql = "SELECT * FROM resource_video";//设置搜索范围
+    $type = $_POST['type'];
+    $disNum = $_POST['disNum'];
+
+    $sql = "SELECT * FROM resource_".$type;
+ 
+    // $sql = "UPDATE resource_video SET resource_title='2个HTML5特效源码' WHERE resource_id=15"; //修改数据
     
     $result = mysqli_query($con,$sql);
 
-    $content= array();// 创建空数组
-
+    $content= array();
+    
     while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
 
         array_push($content,$row);
 
-    };
-    // 将搜索值转换为php对象并添加进数组
+        // print_r(json_encode($row));
 
-    print_r(json_encode($content)); // php对象转为json格式
+    }
 
-    mysqli_free_result($result); //释放游标
+    // print_r($row);
+
+    print_r(json_encode($content));
 
     mysqli_close($con);
 

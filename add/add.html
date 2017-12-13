@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li id="title"><span>title</span><input type="text"></li>
+            <li id="imgsrc"><span>imgsrc</span><input type="text"></li>
+            <li id="address"><span>address</span><input type="text"></li>
+            <li id="downloads"><span>downloads</span><input type="text"></li>
+            <li id="describe"><span>describe</span><input type="text"></li>
+            <li id="date"><span>date</span><input type="text"></li>
+        </ul>
+        <div id="tijiao">提交</div>
+    </div>
+    <script src="./jquery-3.2.1.min.js"></script>
+    <script>
+        var tijiao = document.getElementById("tijiao");
+        
+
+        tijiao.onclick = function(){
+            // console.log($("#title input").val());
+            $.ajax({
+                url:"add.php",
+                type: "post",
+                'data':{"title":$("#title input").val(),
+                        "imgsrc":$("#imgsrc input").val(),
+                        "address":$("#address input").val(),
+                        "downloads":$("#downloads input").val(),
+                        "describe":$("#describe input").val(),
+                        "date":$("#date input").val()
+                },
+                success(data){
+                    console.log(data);
+                }
+            })
+        }
+    </script>
+</body>
+</html>
