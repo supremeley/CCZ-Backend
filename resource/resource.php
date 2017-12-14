@@ -13,26 +13,38 @@
 
     $type = $_POST['type'];
     $disNum = $_POST['disNum'];
+    $target = $_POST['target'];
+    $thisPage = $_POST['thisPage'];
 
-    $sql = "SELECT * FROM resource_".$type;
+    if($target){
+        $sql = "SELECT * FROM resource_".$type." WHERE resource_target='$target'";
+    }else{
+        $sql = "SELECT * FROM resource_".$type;
+    }
+    
  
     // $sql = "UPDATE resource_video SET resource_title='2个HTML5特效源码' WHERE resource_id=15"; //修改数据
     
     $result = mysqli_query($con,$sql);
 
-    $content= array();
+    $input= array();
     
-    while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+    while($row = mysqli_fetch_assoc($result)){
 
-        array_push($content,$row);
+        array_push($input,$row);
 
         // print_r(json_encode($row));
 
     }
 
-    // print_r($row);
+    $start = $disNum * $thisPage;
 
-    print_r(json_encode($content));
+    $output = array_slice($input,$start,$disNum);
+
+    // echo $start;
+    // echo $end;
+
+    print_r(json_encode($output));
 
     mysqli_close($con);
 
