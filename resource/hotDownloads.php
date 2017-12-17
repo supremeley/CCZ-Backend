@@ -12,34 +12,37 @@
     header('Content-Type:text/html; charset=UTF-8');
 
     $type = $_POST['type'];
-    $disNum = $_POST['disNum'];
     $target = $_POST['target'];
-    $thisPage = $_POST['thisPage'];
-    $id = $_POST['id'];
+
+    // echo $target;
 
     if($target){
         $sql = "SELECT * FROM resource_".$type." WHERE resource_target='$target'";
-    }else if($id){
-        $sql = "SELECT * FROM resource_".$type." WHERE resource_id='$id'";
     }else{
         $sql = "SELECT * FROM resource_".$type;
-    };
+    }
     
     $result = mysqli_query($con,$sql);
 
     $input= array();
     
-    while($row = mysqli_fetch_assoc($result)){
+    while($row = mysqli_fetch_object($result)){
 
         array_push($input,$row);
 
     };
 
-    $start = $disNum * $thisPage;
+    function downDeat($a,$b){
+        if($a->resource_downloads < $b->resource_downloads){
+            return 1;
+        }else if($a->resource_downloads == $b->resource_downloads){
+            return($a->resource_id > $b->resource_id)? 1:-1;
+        }
+    };
 
-    $output = array_slice($input,$start,$disNum);
+    usort($input,"downDeat");
 
-    array_push($output,count($input));
+    $output = array_slice($input,0,5);
 
     print_r(json_encode($output));
 

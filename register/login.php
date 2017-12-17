@@ -17,7 +17,7 @@
 
     $retval = mysqli_query($con,$sql);
 
-    if($row = mysqli_fetch_array($retval)){
+    if($row = mysqli_num_rows($retval)){
         echo '1';
     }else{
         echo '0';
