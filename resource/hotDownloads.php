@@ -17,7 +17,7 @@
     // echo $target;
 
     if($target){
-        $sql = "SELECT * FROM resource_".$type." WHERE resource_target='$target'";
+        $sql = "SELECT * FROM resource_".$type." WHERE find_in_set('$target',resource_target)";
     }else{
         $sql = "SELECT * FROM resource_".$type;
     }

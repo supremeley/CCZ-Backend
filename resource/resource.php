@@ -17,10 +17,8 @@
     $thisPage = $_POST['thisPage'];
     $id = $_POST['id'];
 
-    if($target){
-        $sql = "SELECT * FROM resource_".$type." WHERE resource_target='$target'";
-    }else if($id){
-        $sql = "SELECT * FROM resource_".$type." WHERE resource_id='$id'";
+    if($target or $id){
+        $sql = "SELECT * FROM resource_".$type." WHERE find_in_set('$target',resource_target) or resource_id='$id'";
     }else{
         $sql = "SELECT * FROM resource_".$type;
     };
