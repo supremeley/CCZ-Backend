@@ -6,7 +6,7 @@
 
     mysqli_select_db($con1,'resource');
 
-    $val = $_POST['val'];
+    $val = $_GET['searchContent'];
 
     // echo $val;
     
