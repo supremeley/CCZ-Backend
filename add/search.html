@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=?, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="btn">
+        <button id="btn1">提交</button>
+    </div>
+    <script src="./jquery-3.2.1.min.js"></script>
+    <script>
+        var btn1 = document.getElementById('btn1');
+        btn1.onclick = function(){
+            // console.log(JSON.stringify($('#btn').val()));
+            $.ajax({
+                url:"search.php",
+                type:'post',
+                data:{'val':$('#btn').val()},
+                success(data){
+                    console.log(JSON.parse(data));
+                    // console.log(data);
+                }
+            })
+        }
+        
+    </script>
+</body>
+</html>
