@@ -6,7 +6,7 @@
 
     mysqli_select_db($con1,'resource');
 
-    $val = $_GET['searchContent'];
+    $val = $_GET['searchCondition'];
 
     // echo $val;
     
@@ -17,13 +17,13 @@
  
     $result = mysqli_query($con1,$sql);
 
-    $input = array();
+    $input1 = array();
 
     while($row = mysqli_fetch_object($result)){
-        array_push($input,$row);
+        array_push($input1,$row);
     };
 
-    function downDeat($a,$b){
+    function downDeat($a,$b){ // 根据值下载次数排序
         if($a->resource_downloads < $b->resource_downloads){
             return 1;
         }else if($a->resource_downloads == $b->resource_downloads){
@@ -31,7 +31,7 @@
         }
     };
 
-    usort($input,"downDeat");
+    usort($input1,"downDeat");
 
     $con2 = mysqli_connect('127.0.0.1','root','','bloglist');
     mysqli_query($con2,'set names utf8');
@@ -42,10 +42,27 @@
 
     $result = mysqli_query($con2,$sql);
 
+    $input2 = array();
+
     while($row = mysqli_fetch_object($result)){
-        array_push($input,$row);
+        array_push($input2,$row);
     };
 
-    print_r(json_encode($input));
+    function relevant($a,$b){ // 根据值出现次数排序
+        global $val;
+        if(substr_count($a->blog_content,$val) < substr_count($b->blog_content,$val)){
+            return 1;
+        }else if(substr_count($a->blog_content,$val) == substr_count($b->blog_content,$val)){
+            return($a->blog_id > $b->blog_id)? 1:-1;
+        }
+    };
+
+    usort($input2,"relevant");
+
+    while($row = $input2){
+        array_push($input2,$row);
+    };
+
+    print_r(json_encode($input1));
 
 ?>
