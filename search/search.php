@@ -59,9 +59,9 @@
 
     usort($input2,"relevant");
 
-    while($row = $input2){
-        array_push($input2,$row);
-    };
+    foreach($input2 as $value){
+        array_push($input1,$value);
+    }
 
     print_r(json_encode($input1));
 
