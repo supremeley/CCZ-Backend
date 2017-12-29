@@ -1,5 +1,5 @@
 <?php
-
+    error_reporting(0);
     $con1 = mysqli_connect('127.0.0.1','root','','resource');
 
     mysqli_query($con1,'set names utf8');
@@ -33,6 +33,10 @@
 
     usort($input1,"downDeat");
 
+    $obj= new stdClass();
+    $obj->resource = $input1;
+
+
     $con2 = mysqli_connect('127.0.0.1','root','','bloglist');
     mysqli_query($con2,'set names utf8');
 
@@ -48,6 +52,8 @@
         array_push($input2,$row);
     };
 
+    
+
     function relevant($a,$b){ // 根据值出现次数排序
         global $val;
         if(substr_count($a->blog_content,$val) < substr_count($b->blog_content,$val)){
@@ -59,10 +65,12 @@
 
     usort($input2,"relevant");
 
-    foreach($input2 as $value){
-        array_push($input1,$value);
-    }
+    // foreach($input2 as $value){
+    //     array_push($input1,$value);
+    // }
 
-    print_r(json_encode($input1));
+    $obj->blog = $input2;
+
+    print_r(json_encode($obj));
 
 ?>
