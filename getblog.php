@@ -21,9 +21,9 @@
 
     // echo $target;
     if($target == null) {
-        $sql = "SELECT * FROM blog_tbl WHERE blog_id < $current";
+        $sql = "SELECT * FROM blog_tbl WHERE blog_id <= $current";
     }else {
-        $sql = "SELECT * FROM blog_tbl WHERE blog_id < $current AND blog_target = '$target'";
+        $sql = "SELECT * FROM blog_tbl WHERE blog_id <= $current AND blog_target = '$target'";
     }
     mysqli_select_db( $conn, "bloglist" );
     $result = mysqli_query($conn,$sql);
