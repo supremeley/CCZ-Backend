@@ -8,19 +8,19 @@
 
     $obj= new stdClass();
 
-    if($scr == "all"){
+    // if($scr == "all"){
 
-        $type = array("video","pic");
+    //     $type = array("video","pic");
 
-        for($i = 0 ; $i<count($type) ; $i++){
+    //     for($i = 0 ; $i<count($type) ; $i++){
 
-            resource($type[$i],$val);
+    //         resource($type[$i],$val);
 
-        };
+    //     };
 
-        blog("blog",$val);
+    //     blog("blog",$val);
 
-    }else{
+    // }else{
 
         if($scr == "blog"){
 
@@ -31,7 +31,7 @@
             resource($scr,$val);
 
         };
-    };
+    // };
 
     function resource($scr,$val){ // 在资源库中搜索
 
