@@ -2,9 +2,13 @@
 
     error_reporting(0);
 
-    $val = $_GET['searchCondition'];
+    $val = $_GET['condition'];
 
-    $scr = $_GET['screening'];
+    $screen = $_GET['screen'];
+
+    $sort = $_GET['sort'];
+
+    // echo $screen;
 
     $obj= new stdClass();
 
@@ -22,18 +26,18 @@
 
     // }else{
 
-        if($scr == "blog"){
+        if($screen == "blog"){
 
-            blog($scr,$val);
+            blog($screen,$val);
             
         }else{
 
-            resource($scr,$val);
+            resource($screen,$val);
 
         };
     // };
 
-    function resource($scr,$val){ // 在资源库中搜索
+    function resource($screen,$val){ // 在资源库中搜索
 
         global $obj;
 
@@ -43,7 +47,7 @@
 
         mysqli_select_db($conn,'resource');
 
-        $sql = "SELECT * FROM resource_".$scr." WHERE resource_title LIKE '%$val%' or resource_target LIKE '%$val%' or resource_describe LIKE '%$val%'";
+        $sql = "SELECT * FROM resource_".$screen." WHERE resource_title LIKE '%$val%' or resource_target LIKE '%$val%' or resource_describe LIKE '%$val%'";
     
         $result = mysqli_query($conn,$sql);
 
@@ -55,13 +59,13 @@
 
         usort($input,"downDeat");
 
-        $obj->$scr = $input;
+        $obj->$screen = $input;
 
         // print_r($scr);
 
     };
 
-    function blog($scr,$val){ // 在博客库中搜索
+    function blog($screen,$val){ // 在博客库中搜索
 
         global $obj;
 
@@ -85,7 +89,7 @@
 
         usort($input,"relevant");
 
-        $obj->$scr = $input;
+        $obj->$screen = $input;
 
     };
     
@@ -119,6 +123,6 @@
 
     print_r(json_encode($obj));
 
-    mysqli_close($conn);
+    // mysqli_close($conn);
 
 ?>
