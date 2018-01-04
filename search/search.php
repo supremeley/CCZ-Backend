@@ -9,37 +9,25 @@
     $sort = $_GET['sort'];
 
     // echo $screen;
+    // print_r($sort == 'time');
 
     $obj= new stdClass();
 
-    // if($scr == "all"){
+    if($screen == "blog"){
 
-    //     $type = array("video","pic");
+        blog($screen,$val);
+        
+    }else{
 
-    //     for($i = 0 ; $i<count($type) ; $i++){
+        resource($screen,$val);
 
-    //         resource($type[$i],$val);
-
-    //     };
-
-    //     blog("blog",$val);
-
-    // }else{
-
-        if($screen == "blog"){
-
-            blog($screen,$val);
-            
-        }else{
-
-            resource($screen,$val);
-
-        };
-    // };
+    };
 
     function resource($screen,$val){ // 在资源库中搜索
 
         global $obj;
+
+        global $sort;
 
         $conn = mysqli_connect('127.0.0.1','root','','resource');
 
@@ -57,17 +45,21 @@
             array_push($input,$row);
         };
 
-        usort($input,"downDeat");
+        if( $sort == 'time' ){
+            usort($input,'reslately');
+        }else{
+            usort($input,'downDeat');
+        }
 
         $obj->$screen = $input;
-
-        // print_r($scr);
 
     };
 
     function blog($screen,$val){ // 在博客库中搜索
 
         global $obj;
+
+        global $sort;
 
         $conn = mysqli_connect('127.0.0.1','root','','bloglist');
     
@@ -87,7 +79,11 @@
 
         };
 
-        usort($input,"relevant");
+        if($sort == 'time'){
+            usort($input,'bloglately');
+        }else{
+            usort($input,'relevant');
+        }
 
         $obj->$screen = $input;
 
@@ -108,7 +104,7 @@
         }
     };
   
-    function downDeat($a,$b){ // 根据值下载次数排序
+    function downDeat($a,$b){ // 根据下载次数排序
 
         if($a->resource_downloads < $b->resource_downloads){
 
@@ -121,8 +117,34 @@
         }
     };
 
+    function reslately($a,$b){ // 根据最新时间排序
+        
+        if($a->submission_date < $b->submission_date){
+
+            return 1;
+
+        }else if($a->submission_date == $b->submission_date){
+
+            return($a->resource_id > $b->resource_id)? 1:-1;
+
+        }
+    };
+
+    function bloglately($a,$b){ // 根据最新时间排序
+        
+        if($a->blog_date < $b->blog_date){
+
+            return 1;
+
+        }else if($a->blog_date == $b->blog_date){
+
+            return($a->blog_id > $b->blog_id)? 1:-1;
+
+        }
+    }
+
     print_r(json_encode($obj));
 
-    // mysqli_close($conn);
+    mysqli_close($conn);
 
 ?>
