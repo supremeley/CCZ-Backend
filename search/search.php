@@ -9,7 +9,6 @@
     $sort = $_GET['sort'];
 
     // echo $screen;
-    // print_r($sort == 'time');
 
     $obj= new stdClass();
 
