@@ -18,17 +18,19 @@
 
     $result = mysqli_query($con,$sql_select);
 
+    // echo $password;
+    
     if($row = mysqli_num_rows($result)){
         echo '0';
     }else{
-        $sql_insert = "INSERT INTO user_tbl(user_name,user_password,submission_date) VALUES ('$username','$password','$createdate')";
-
-        if($password and $created){
+        if($password){
+            $sql_insert = "INSERT INTO user_tbl(user_name,user_password,submission_date) VALUES ('$username','$password','$createdate')";
             $result = mysqli_query($con,$sql_insert);
             echo '1';
         }else{
+            
             echo '2';
-        }       
+        }
     }
 
     mysqli_close($con);
