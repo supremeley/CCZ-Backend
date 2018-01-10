@@ -10,6 +10,8 @@
     $password = $_POST['password'];
     $canChange = $_POST['canChange'];
 
+    // echo $canChange;
+
     $sql = "SELECT * FROM user_tbl WHERE user_name = '$username'";
 
     if($canChange){

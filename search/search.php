@@ -8,7 +8,9 @@
 
     $sort = $_GET['sort'];
 
-    // echo $screen;
+    $current = $_GET['current'];
+    
+    // echo $current;
 
     $obj= new stdClass();
 
@@ -21,6 +23,8 @@
         resource($screen,$val);
 
     };
+
+    
 
     function resource($screen,$val){ // 在资源库中搜索
 
@@ -48,7 +52,9 @@
             usort($input,'reslately');
         }else{
             usort($input,'downDeat');
-        }
+        };
+
+        $input = array_slice($input,0,$current+5);
 
         $obj->$screen = $input;
 
@@ -83,6 +89,8 @@
         }else{
             usort($input,'relevant');
         }
+
+        $input = array_slice($input,0,$current+5);
 
         $obj->$screen = $input;
 
