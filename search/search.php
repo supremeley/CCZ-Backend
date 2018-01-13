@@ -54,7 +54,7 @@
             usort($input,'downDeat');
         };
 
-        $input = array_slice($input,0,$current+5);
+        $input = array_slice($input,$current,$current+5);
 
         $obj->$screen = $input;
 
