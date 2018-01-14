@@ -14,17 +14,26 @@
 
     $obj= new stdClass();
 
-    if($screen == "blog"){
+    if($screen == "all"){
 
-        blog($screen,$val);
+        blog('blog',$val);
+
+        resource('video',$val);
+
+        resource('pic',$val);
         
     }else{
 
-        resource($screen,$val);
+        if($screen == "blog"){
 
-    };
-
+            blog($screen,$val);
+            
+        }else{
     
+            resource($screen,$val);
+    
+        };
+    }
 
     function resource($screen,$val){ // 在资源库中搜索
 
@@ -54,7 +63,11 @@
             usort($input,'downDeat');
         };
 
-        $input = array_slice($input,$current,$current+5);
+        if($screen == 'all'){
+            $input = array_slice($input,0,10);
+        }else{
+            $input = array_slice($input,$current,$current+5);
+        }
 
         $obj->$screen = $input;
 
@@ -90,7 +103,11 @@
             usort($input,'relevant');
         }
 
-        $input = array_slice($input,0,$current+5);
+        if($screen == 'all'){
+            $input = array_slice($input,0,10);
+        }else{
+            $input = array_slice($input,$current,$current+5);
+        }
 
         $obj->$screen = $input;
 
