@@ -1,11 +1,7 @@
 <?php
     error_reporting(0);
 
-    $con = mysqli_connect('localhost:3306','root','','resource');
-
-    // if (!$con){
-    //     die('Could not connect: ' . mysql_error());
-    // };
+    $con = mysqli_connect('127.0.0.1:3306','resource','DTG6GHJmAy','resource');
 
     mysqli_query($con,'set names utf8');
 
@@ -13,8 +9,6 @@
 
     $type = $_POST['type'];
     $target = $_POST['target'];
-
-    // echo $target;
 
     if($target){
         $sql = "SELECT * FROM resource_".$type." WHERE find_in_set('$target',resource_target)";

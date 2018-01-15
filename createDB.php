@@ -1,6 +1,6 @@
 <?php
     error_reporting(0); // 报错提示
-    $conn = mysqli_connect('127.0.0.1', 'root' , '' , 'zll' , 3306);// 链接数据库
+    $conn = mysqli_connect('207.246.108.136:888', 'root' , 'DTG6GHJmAy' , 'cz20171106' );// 链接数据库
 
     // if(! $conn ) // 测试链接
     // {
@@ -8,8 +8,8 @@
     // }
     // echo '数据库连接成功！';
 
-    $sql = 'DROP DATABASE user'; // 删除库
-    mysqli_query($conn,'set names utf8'); // 设置编码
+//     $sql = 'DROP DATABASE user'; // 删除库
+//     mysqli_query($conn,'set names utf8'); // 设置编码
 
     $sql = 'CREATE DATABASE user '; // 创建库
     $retval = mysqli_query($conn,$sql);
@@ -30,7 +30,7 @@
     $sql = " INSERT INTO user_tbl ". 
             "(user_name,user_password,submission_date) ".
             "VALUES".
-            "('蔡阳几把大','123','2017-12-07')";
+            "('111','123','2017-12-07')";
 
     $retval = mysqli_query($conn,$sql );
 
@@ -60,7 +60,7 @@
 
     // }
 
-    // print_r(json_encode($obj));
+    print_r(json_encode($obj));
 
     mysqli_close($conn);
 ?>

@@ -1,7 +1,7 @@
 <?php
 
     error_reporting(0);
-    $conn = mysqli_connect('127.0.0.1','root','','user');
+    $conn = mysqli_connect('127.0.0.1:3306','cz','DTG6GHJmAy','cz');
     header('Content-Type:text/html; charset=UTF-8');
     mysqli_query($conn,'set names utf8'); 
     mysqli_select_db($conn,'user');
@@ -9,8 +9,6 @@
     $username = $_POST['username']; 
     $password = $_POST['password'];
     $canChange = $_POST['canChange'];
-
-    // echo $canChange;
 
     $sql = "SELECT * FROM user_tbl WHERE user_name = '$username'";
 

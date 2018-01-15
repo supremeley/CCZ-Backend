@@ -2,7 +2,7 @@
 
     error_reporting(0);
 
-    $con = mysqli_connect('127.0.0.1:3306','root','','user');
+    $con = mysqli_connect('127.0.0.1:3306','cz','DTG6GHJmAy','cz');
 
     header('Content-Type:text/html; charset=UTF-8');
 
@@ -17,8 +17,6 @@
     $sql_select = "SELECT user_name FROM user_tbl WHERE user_name = '$username'";
 
     $result = mysqli_query($con,$sql_select);
-
-    // echo $password;
     
     if($row = mysqli_num_rows($result)){
         echo '0';

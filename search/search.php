@@ -41,7 +41,7 @@
 
         global $sort;
 
-        $conn = mysqli_connect('127.0.0.1','root','','resource');
+        $conn = mysqli_connect('127.0.0.1:3306','resource','DTG6GHJmAy','resource');
 
         mysqli_query($conn,'set names utf8');
 
@@ -79,7 +79,7 @@
 
         global $sort;
 
-        $conn = mysqli_connect('127.0.0.1','root','','bloglist');
+        $conn = mysqli_connect('127.0.0.1:3306','bloglist','DTG6GHJmAy','bloglist');
     
         mysqli_query($conn,'set names utf8');
 
