@@ -1,13 +1,11 @@
 <?php 
     error_reporting(0);
-    $conn=mysqli_connect('127.0.0.1:3306','user','DTG6GHJmAy','user');
+    $conn=mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','user');
     mysqli_query($conn , "set names utf8");
     header("Content-Type:text/html; charset=UTF-8");
 
     $un = $_POST["un"];
     $current = $_POST["current"];
-
-    // echo $un;
 
     $sql = "SELECT * FROM user_tbl WHERE user_name='$un'";
     $retval = mysqli_query($conn,$sql);
@@ -17,7 +15,8 @@
     $favarr = explode(",",$collection);
     array_shift($favarr);
 
-    $conn=mysqli_connect('127.0.0.1:3306','bloglist','DTG6GHJmAy','bloglist');
+    $conn=mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','bloglist');
+    mysqli_query($conn , "set names utf8");
 
     mysqli_select_db($conn,"bloglist");
     $favblog = [];

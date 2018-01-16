@@ -2,7 +2,7 @@
 
     error_reporting(0);
 
-    $con = mysqli_connect('127.0.0.1:3306','cz','DTG6GHJmAy','cz');
+    $con = mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','user');
 
     header('Content-Type:text/html; charset=UTF-8');
 

@@ -1,6 +1,6 @@
 <?php 
     error_reporting(0);
-    $conn=mysqli_connect('127.0.0.1:3306','bloglist','DTG6GHJmAy','bloglist');
+    $conn=mysqli_connect('127.0.0.1:3306','user','DTG6GHJmAy','bloglist');
     mysqli_query($conn , "set names utf8");
     header("Content-Type:text/html; charset=UTF-8");
 
@@ -8,17 +8,26 @@
     $target = $_POST['target'];
 
     if($target == null) {
-        $sql = "SELECT * FROM blog_tbl WHERE blog_id <= $current";
+        $sql = "SELECT * FROM blog_tbl";
     }else {
-        $sql = "SELECT * FROM blog_tbl WHERE blog_id <= $current AND blog_target = '$target'";
+        $sql = "SELECT * FROM blog_tbl WHERE blog_target = '$target'";
     }
     mysqli_select_db( $conn, "bloglist" );
     $result = mysqli_query($conn,$sql);
     $arr = [];
     while ($row = mysqli_fetch_assoc($result)) {
-        array_push($arr,$row);
+        array_unshift($arr,$row);
     };
 
-    print_r(json_encode($arr));
+    $arr2 = [];
+    for ($i=0;$i<count($arr);$i++){
+        if($i >= $current){
+            break;
+        }else {
+            array_push($arr2,$arr[$i]);
+        }
+    }
+
+    print_r(json_encode($arr2));
     mysqli_close($conn);
 ?>

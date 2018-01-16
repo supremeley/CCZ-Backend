@@ -1,6 +1,6 @@
 <?php 
     error_reporting(0);
-    $conn=mysqli_connect('127.0.0.1:3306','adminuser','DTG6GHJmAy','adminuser');
+    $conn=mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','adminuser');
     mysqli_query($conn , "set names utf8");
 
     $un = $_POST["un"];

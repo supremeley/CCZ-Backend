@@ -2,7 +2,7 @@
 
     error_reporting(0);
 
-    $con = mysqli_connect('127.0.0.1:3306','cz','DTG6GHJmAy','cz');
+    $con = mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','user');
 
     mysqli_select_db($con,'user');
 
@@ -13,7 +13,7 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT user_name,user_password FROM user_tbl WHERE user_name = '123' AND user_password = '123123'";
+    $sql = "SELECT user_name,user_password FROM user_tbl WHERE user_name = '$username' AND user_password = '$password'";
 
     $retval = mysqli_query($con,$sql);  
 

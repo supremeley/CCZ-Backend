@@ -1,7 +1,7 @@
 <?php
     error_reporting(0);
 
-    $con = mysqli_connect('127.0.0.1:3306','resource','DTG6GHJmAy','resource');
+    $con = mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','resource');
 
     if (!$con){
         die('Could not connect: ' . mysql_error());

@@ -2,7 +2,7 @@
 
     error_reporting(0);
 
-    $con = mysqli_connect('127.0.0.1:3306','resource','DTG6GHJmAy','resource');
+    $con = mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','resource');
 
     mysqli_query($con,'set names utf8');
 
@@ -17,11 +17,12 @@
     $downloads = $_POST['downloads'];
     $describe = $_POST['describe'];
     $target = $_POST['target'];
+    $password = $_POST['password'];
     $date = $_POST['date'];
 
-    $sql = "INSERT INTO resource_".$type."(resource_title,resource_imgsrc,resource_address,resource_downloads,resource_describe,submission_date)
+    $sql = "INSERT INTO resource_".$type."(resource_title,resource_imgsrc,resource_address,resource_downloads,resource_describe,resource_password,submission_date)
     VALUES
-    ('$title','$imgsrc','$address','$downloads','$describe','$date')";
+    ('$title','$imgsrc','$address','$downloads','$describe','$password','$date')";
     
     $result = mysqli_query($con,$sql);
 
