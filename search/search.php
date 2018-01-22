@@ -9,10 +9,10 @@
     $sort = $_GET['sort'];
 
     $current = $_GET['current'];
-    
-    // echo $current;
 
-    $obj= new stdClass();
+    $obj = new stdClass();
+
+    $conn = '';
 
     if($screen == "all"){
 
@@ -33,13 +33,21 @@
             resource($screen,$val);
     
         };
-    }
+    };
+    
+    print_r(json_encode($obj));
+
+    mysqli_close($conn);
 
     function resource($screen,$val){ // 在资源库中搜索
 
         global $obj;
 
         global $sort;
+
+        global $current;
+
+        global $conn;
 
         $conn = mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','resource');
 
@@ -78,6 +86,10 @@
         global $obj;
 
         global $sort;
+
+        global $current;
+
+        global $conn;
 
         $conn = mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','bloglist');
     
@@ -167,8 +179,5 @@
         }
     }
 
-    print_r(json_encode($obj));
-
-    mysqli_close($conn);
 
 ?>

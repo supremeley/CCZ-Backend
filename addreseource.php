@@ -14,15 +14,15 @@
     $title = $_POST['title'];
     $imgsrc = $_POST['imgsrc'];
     $address = $_POST['address'];
-    $downloads = $_POST['downloads'];
+    $downloads = '3';
     $describe = $_POST['describe'];
     $target = $_POST['target'];
     $password = $_POST['password'];
     $date = $_POST['date'];
 
-    $sql = "INSERT INTO resource_".$type."(resource_title,resource_imgsrc,resource_address,resource_downloads,resource_describe,resource_password,submission_date)
+    $sql = "INSERT INTO resource_".$type."(resource_title,resource_imgsrc,resource_address,resource_downloads,resource_describe,resource_target,resource_password,submission_date)
     VALUES
-    ('$title','$imgsrc','$address','$downloads','$describe','$password','$date')";
+    ('$title','$imgsrc','$address','$downloads','$describe','$target','$password','$date')";
     
     $result = mysqli_query($con,$sql);
 
