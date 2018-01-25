@@ -2,7 +2,7 @@
 
     error_reporting(0);
 
-    $con = mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','user');
+    $con = mysqli_connect('127.0.0.1:3306','root','','user');
 
     mysqli_select_db($con,'user');
 

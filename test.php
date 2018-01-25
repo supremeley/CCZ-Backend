@@ -1,6 +1,6 @@
 <?php 
     error_reporting(0);
-    $conn=mysqli_connect('127.0.0.1:3306','bloglist','DTG6GHJmAy','bloglist');
+    $conn=mysqli_connect('127.0.0.1:3306','root','','bloglist');
     mysqli_query($conn , "set names utf8");
     header("Content-Type:text/html; charset=UTF-8");
 
@@ -8,7 +8,7 @@
     $un = $_POST['username'];
     $isadd = $_POST['isadd'];
 
-    $conn1=mysqli_connect('127.0.0.1:3306','cz','DTG6GHJmAy','cz');
+    $conn1=mysqli_connect('127.0.0.1:3306','root','','user');
     mysqli_query($conn , "set names utf8");
 
     $sql = "SELECT * FROM user_tbl WHERE user_name='$un'";

@@ -49,7 +49,7 @@
 
         global $conn;
 
-        $conn = mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','resource');
+        $conn = mysqli_connect('127.0.0.1:3306','root','','resource');
 
         mysqli_query($conn,'set names utf8');
 
@@ -91,7 +91,7 @@
 
         global $conn;
 
-        $conn = mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','bloglist');
+        $conn = mysqli_connect('127.0.0.1:3306','root','','bloglist');
     
         mysqli_query($conn,'set names utf8');
 

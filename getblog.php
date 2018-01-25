@@ -1,6 +1,6 @@
 <?php 
     error_reporting(0);
-    $conn=mysqli_connect('127.0.0.1:3306','root','DTG6GHJmAy','bloglist');
+    $conn=mysqli_connect('127.0.0.1:3306','root','','bloglist');
     mysqli_query($conn , "set names utf8");
     header("Content-Type:text/html; charset=UTF-8");
 
