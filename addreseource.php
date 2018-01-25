@@ -28,6 +28,6 @@
 
     mysqli_close($con);
 
-    echo '添加成功';
+    echo 1;
 
 ?>
